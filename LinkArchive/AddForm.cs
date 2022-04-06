@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace LinkArchive
 {
-    public partial class Form1 : Form
+    public partial class AddForm : Form
     {
-        public Form1()
+        public AddForm()
         {
             InitializeComponent();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            new AddForm().Show();
         }
     }
 }
