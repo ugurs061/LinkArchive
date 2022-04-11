@@ -1,6 +1,6 @@
 ﻿namespace LinkArchive
 {
-    partial class HomePage
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,46 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblLink = new System.Windows.Forms.Label();
-            this.lblTittle = new System.Windows.Forms.Label();
+            this.lblUrl = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.txtTittle = new System.Windows.Forms.TextBox();
             this.txtLink = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cBoxKategori = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dataGVTablo = new System.Windows.Forms.DataGridView();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.gvTablo = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGVTablo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTablo)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblLink
+            // lblUrl
             // 
-            this.lblLink.AutoSize = true;
-            this.lblLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblLink.Location = new System.Drawing.Point(55, 84);
-            this.lblLink.Name = "lblLink";
-            this.lblLink.Size = new System.Drawing.Size(63, 29);
-            this.lblLink.TabIndex = 0;
-            this.lblLink.Text = "Link:";
+            this.lblUrl.AutoSize = true;
+            this.lblUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblUrl.Location = new System.Drawing.Point(68, 86);
+            this.lblUrl.Name = "lblUrl";
+            this.lblUrl.Size = new System.Drawing.Size(50, 29);
+            this.lblUrl.TabIndex = 0;
+            this.lblUrl.Text = "Url:";
             // 
-            // lblTittle
+            // lblTitle
             // 
-            this.lblTittle.AutoSize = true;
-            this.lblTittle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblTittle.Location = new System.Drawing.Point(45, 28);
-            this.lblTittle.Name = "lblTittle";
-            this.lblTittle.Size = new System.Drawing.Size(73, 29);
-            this.lblTittle.TabIndex = 1;
-            this.lblTittle.Text = "Tittle:";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblTitle.Location = new System.Drawing.Point(58, 30);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(67, 29);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "Title:";
             // 
             // txtTittle
             // 
             this.txtTittle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtTittle.Location = new System.Drawing.Point(124, 28);
+            this.txtTittle.Location = new System.Drawing.Point(131, 30);
             this.txtTittle.Multiline = true;
             this.txtTittle.Name = "txtTittle";
             this.txtTittle.Size = new System.Drawing.Size(368, 33);
@@ -76,7 +76,7 @@
             // txtLink
             // 
             this.txtLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtLink.Location = new System.Drawing.Point(124, 84);
+            this.txtLink.Location = new System.Drawing.Point(131, 84);
             this.txtLink.Multiline = true;
             this.txtLink.Name = "txtLink";
             this.txtLink.Size = new System.Drawing.Size(368, 33);
@@ -85,7 +85,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnSearch.Location = new System.Drawing.Point(562, 121);
+            this.btnSearch.Location = new System.Drawing.Point(563, 121);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(149, 47);
             this.btnSearch.TabIndex = 4;
@@ -95,11 +95,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cBoxKategori);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.lblTittle);
+            this.groupBox1.Controls.Add(this.cmbCategory);
+            this.groupBox1.Controls.Add(this.lblCategory);
+            this.groupBox1.Controls.Add(this.lblTitle);
             this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.lblLink);
+            this.groupBox1.Controls.Add(this.lblUrl);
             this.groupBox1.Controls.Add(this.txtLink);
             this.groupBox1.Controls.Add(this.txtTittle);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -109,42 +109,42 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
             // 
-            // cBoxKategori
+            // cmbCategory
             // 
-            this.cBoxKategori.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.cBoxKategori.FormattingEnabled = true;
-            this.cBoxKategori.Items.AddRange(new object[] {
+            this.cmbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Items.AddRange(new object[] {
             "Özel",
             "Eğitim",
             "İş",
             "Okul"});
-            this.cBoxKategori.Location = new System.Drawing.Point(124, 139);
-            this.cBoxKategori.Name = "cBoxKategori";
-            this.cBoxKategori.Size = new System.Drawing.Size(185, 33);
-            this.cBoxKategori.TabIndex = 6;
+            this.cmbCategory.Location = new System.Drawing.Point(131, 139);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(185, 33);
+            this.cmbCategory.TabIndex = 6;
             // 
-            // label1
+            // lblCategory
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(8, 139);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 29);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Kategori:";
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblCategory.Location = new System.Drawing.Point(8, 139);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(116, 29);
+            this.lblCategory.TabIndex = 5;
+            this.lblCategory.Text = "Category:";
             // 
-            // dataGVTablo
+            // gvTablo
             // 
-            this.dataGVTablo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGVTablo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGVTablo.Location = new System.Drawing.Point(12, 220);
-            this.dataGVTablo.Name = "dataGVTablo";
-            this.dataGVTablo.ReadOnly = true;
-            this.dataGVTablo.RowHeadersWidth = 62;
-            this.dataGVTablo.RowTemplate.Height = 28;
-            this.dataGVTablo.Size = new System.Drawing.Size(766, 303);
-            this.dataGVTablo.TabIndex = 6;
-            this.dataGVTablo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVTablo_CellClick);
+            this.gvTablo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gvTablo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvTablo.Location = new System.Drawing.Point(12, 220);
+            this.gvTablo.Name = "gvTablo";
+            this.gvTablo.ReadOnly = true;
+            this.gvTablo.RowHeadersWidth = 62;
+            this.gvTablo.RowTemplate.Height = 28;
+            this.gvTablo.Size = new System.Drawing.Size(766, 303);
+            this.gvTablo.TabIndex = 6;
+            this.gvTablo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVTablo_CellClick);
             // 
             // btnAdd
             // 
@@ -179,7 +179,7 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // HomePage
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -187,33 +187,33 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.dataGVTablo);
+            this.Controls.Add(this.gvTablo);
             this.Controls.Add(this.groupBox1);
-            this.Name = "HomePage";
+            this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Link Archive";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.HomePage_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGVTablo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTablo)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblLink;
-        private System.Windows.Forms.Label lblTittle;
+        private System.Windows.Forms.Label lblUrl;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TextBox txtTittle;
         private System.Windows.Forms.TextBox txtLink;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGVTablo;
+        private System.Windows.Forms.DataGridView gvTablo;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.ComboBox cBoxKategori;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbCategory;
+        private System.Windows.Forms.Label lblCategory;
     }
 }
 
