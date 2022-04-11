@@ -16,7 +16,7 @@ namespace LinkArchive
         public HomePage()
         {
             InitializeComponent();
-            DatagridviewSetting(dataGVTablo);
+            DatagridviewSetting(dataGVTablo);//datagrid özellikleri
         }
 
         SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-9UN9R3H;Initial Catalog=LinkArchive;Integrated Security=True");
@@ -74,20 +74,29 @@ namespace LinkArchive
         private void btnEdit_Click(object sender, EventArgs e)
         {
             //seçilen satırı edit ekranına getirme
-            int secilenAlan = dataGVTablo.SelectedCells[0].RowIndex;
-
-            tblLinks tblLinks = new tblLinks();
-
-            tblLinks.Id = (int)dataGVTablo.Rows[secilenAlan].Cells["Id"].Value;
-            tblLinks.Tittle = dataGVTablo.Rows[secilenAlan].Cells["Tittle"].Value.ToString();
-            tblLinks.Link = dataGVTablo.Rows[secilenAlan].Cells["Link"].Value.ToString();
-            tblLinks.Kategori = dataGVTablo.Rows[secilenAlan].Cells["Kategori"].Value.ToString();
-
-            EditForm f = new EditForm(tblLinks);
-            if (f.ShowDialog() == DialogResult.OK)
+            try
             {
-                GetVeri();
+                int secilenAlan = dataGVTablo.SelectedCells[0].RowIndex;
+
+                tblLinks tblLinks = new tblLinks();
+
+                tblLinks.Id = (int)dataGVTablo.Rows[secilenAlan].Cells["Id"].Value;
+                tblLinks.Tittle = dataGVTablo.Rows[secilenAlan].Cells["Tittle"].Value.ToString();
+                tblLinks.Link = dataGVTablo.Rows[secilenAlan].Cells["Link"].Value.ToString();
+                tblLinks.Kategori = dataGVTablo.Rows[secilenAlan].Cells["Kategori"].Value.ToString();
+
+                EditForm f = new EditForm(tblLinks);
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    GetVeri();
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Satır seçiniz");
+                
+            }
+            
 
         }
 
@@ -111,6 +120,7 @@ namespace LinkArchive
 
         private void dataGVTablo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //seçilen satır
             int secilenAlan = dataGVTablo.SelectedCells[0].RowIndex;
             tblLinks tblLinks = new tblLinks();
 
