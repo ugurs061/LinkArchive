@@ -70,6 +70,23 @@ namespace LinkArchive
             }
 
         }
+        public List <string> GetCategory(string sql)
+        {
+            if (con.State == ConnectionState.Closed) con.Open();
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.CommandType = CommandType.Text;
+
+            SqlDataReader dr;
+            dr = cmd.ExecuteReader();
+            List<string> category=new List<string>();
+            while (dr.Read())
+            {
+                category.Add(dr["Category"].ToString());
+            }
+            
+            con.Close();
+            return category;
+        }
 
 
     }

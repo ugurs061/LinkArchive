@@ -27,13 +27,20 @@ namespace LinkArchive.Forms
         {
             // category combosunu ayarla
             cmbCategory.Items.Clear();
-            cmbCategory.Items.Add("Özel");
-            cmbCategory.Items.Add("Eğitim");
-            cmbCategory.Items.Add("İş");
-            cmbCategory.Items.Add("Okul");
+
             cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCategory.SelectedIndex = 0;
+
             cmbCategory.Sorted = true;
+
+            var sql = "select * from tblCategory ";
+
+            List<string> list = sqlHelper.GetCategory(sql);
+
+            foreach (string item in list)
+            {
+                cmbCategory.Items.Add(item);
+            }
+            cmbCategory.SelectedIndex = 2;
 
             // diğer text görsellerini ayarla
             if (this.curTblLink == null) // add yapılacak demek
@@ -46,8 +53,8 @@ namespace LinkArchive.Forms
                 this.Text = "Edit";
                 btnAdd.Text = "Edit";
 
-                txtLink.Text = this.curTblLink.Url;
-                txtTittle.Text = this.curTblLink.Title;
+                txtUrl.Text = this.curTblLink.Url;
+                txtTitle.Text = this.curTblLink.Title;
                 cmbCategory.Text = this.curTblLink.Category;
             }
         }
@@ -55,22 +62,22 @@ namespace LinkArchive.Forms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             // verileri ekrandan topla (grab)
-            var title = txtTittle.Text.Trim();
-            var link = txtLink.Text.Trim();
+            var title = txtTitle.Text.Trim();
+            var link = txtUrl.Text.Trim();
             var category = cmbCategory.Text.Trim();
 
             // validations
             if (string.IsNullOrEmpty(title))
             {
                 MessageBox.Show("Please enter a title");
-                txtTittle.Focus();
+                txtTitle.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(link))
             {
                 MessageBox.Show("Please enter a link");
-                txtLink.Focus();
+                txtUrl.Focus();
                 return;
             }
 
@@ -112,6 +119,8 @@ namespace LinkArchive.Forms
                 {
                     // kayıt başarılı
                     this.DialogResult = DialogResult.OK;
+                    
+                    
                 }
                 else
                 {
@@ -123,6 +132,14 @@ namespace LinkArchive.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void tblLinksForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

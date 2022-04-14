@@ -1,6 +1,7 @@
 ﻿using LinkArchive.Business;
 using LinkArchive.Forms;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -13,16 +14,19 @@ namespace LinkArchive
         // variables
         SqlHelper sqlHelper = new SqlHelper(Constants.DefConString);
         tblLinks curTblLinks;
+        
+        
 
         // constructor
         public frmMain()
         {
             InitializeComponent();
 
+
         }
 
         // load
-        private void HomePage_Load(object sender, EventArgs e)
+        private void frmMain_Load(object sender, EventArgs e)
         {
             this.curTblLinks = null;
             gvTablo.BorderStyle = BorderStyle.None;
@@ -33,13 +37,30 @@ namespace LinkArchive
 
             // category combosunu ayarla
             cmbCategory.Items.Clear();
-            cmbCategory.Items.Add("Özel");
-            cmbCategory.Items.Add("Eğitim");
-            cmbCategory.Items.Add("İş");
-            cmbCategory.Items.Add("Okul");
             cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCategory.SelectedIndex = 0;
             cmbCategory.Sorted = true;
+
+            var sql = "select * from tblCategory ";
+            
+            List<string> list = sqlHelper.GetCategory(sql);
+            
+            foreach (string item in list)
+            { 
+                cmbCategory.Items.Add(item);
+            }
+            cmbCategory.SelectedIndex = 2;
+
+            //frmCategory c = new frmCategory();
+
+            //if (c.ShowDialog() == DialogResult.OK)
+            //{
+            //    tblLinksBusiness.GetCategory(cmbCategory);
+            //}
+
+
+
+
+
         }
 
         private void dataGVTablo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -95,30 +116,33 @@ namespace LinkArchive
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    int secilenAlan = gvTablo.SelectedCells[0].RowIndex;
+            try
+            {
+                
 
-            //    DialogResult result = MessageBox.Show("Seçili link silinsin mi ?", "Uyarı", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Seçili link silinsin mi ?", "Uyarı", MessageBoxButtons.YesNo);
 
-            //    if (result == DialogResult.Yes && gvTablo.CurrentRow.Cells[0].Value.ToString().Trim() != "")
-            //    {
-            //        con.Open();
-            //        cmd.Connection = con;
-            //        cmd.CommandText = "DELETE from tblLinks WHERE Id='" + gvTablo.Rows[secilenAlan].Cells["Id"].Value.ToString() + "' ";
-            //        cmd.ExecuteNonQuery();
-            //        cmd.Dispose();//bellekten atar
-            //        con.Close();
+                var sql = "DELETE from tblLinks WHERE Id=@Id";
 
-            //        GetVeri();
+                List<SqlParameter> parameters = new List<SqlParameter>();
+             
+                parameters.Add(new SqlParameter("@Id", curTblLinks.Id));
 
-            //    }
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Lütfen silmek istediğiniz satırı seçiniz");
 
-            //}
+
+                if (result == DialogResult.Yes)
+                {
+                    var res = sqlHelper.ExecuteNoneQuery(sql, parameters);
+                    
+                    tblLinksBusiness.GetVeri(gvTablo);
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Lütfen silmek istediğiniz satırı seçiniz");
+
+            }
         }
 
 
@@ -136,5 +160,17 @@ namespace LinkArchive
             //}
         }
 
+        private void btnCAdd_Click(object sender, EventArgs e)
+        {
+            frmCategory c = new frmCategory();
+            c.ShowDialog();
+        }
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

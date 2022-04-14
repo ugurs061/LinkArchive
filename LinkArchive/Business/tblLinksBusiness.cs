@@ -15,5 +15,11 @@ namespace LinkArchive.Business
             var sqlHelper = new SqlHelper(Constants.DefConString);
             gv.DataSource = sqlHelper.GetTable("select * from tblLinks order by Id desc").Item2;
         }
+        public static void GetCategory(ComboBox gc)
+        { 
+        var sqlHelper = new SqlHelper(Constants.DefConString);
+            gc.DataSource = sqlHelper.GetTable("select * from tblCategory order by Id desc").Item2;
+        }
+
     }
 }

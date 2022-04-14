@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tblLinksForm));
             this.cmbCategory = new System.Windows.Forms.ComboBox();
-            this.lblKategori = new System.Windows.Forms.Label();
+            this.lblCategory = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtLink = new System.Windows.Forms.TextBox();
-            this.txtTittle = new System.Windows.Forms.TextBox();
-            this.lblLink = new System.Windows.Forms.Label();
-            this.lblTittle = new System.Windows.Forms.Label();
+            this.txtUrl = new System.Windows.Forms.TextBox();
+            this.txtTitle = new System.Windows.Forms.TextBox();
+            this.lblUrl = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmbCategory
@@ -45,17 +46,17 @@
             this.cmbCategory.Location = new System.Drawing.Point(148, 154);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(222, 33);
-            this.cmbCategory.TabIndex = 15;
+            this.cmbCategory.TabIndex = 3;
             // 
-            // lblKategori
+            // lblCategory
             // 
-            this.lblKategori.AutoSize = true;
-            this.lblKategori.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblKategori.Location = new System.Drawing.Point(11, 154);
-            this.lblKategori.Name = "lblKategori";
-            this.lblKategori.Size = new System.Drawing.Size(119, 29);
-            this.lblKategori.TabIndex = 14;
-            this.lblKategori.Text = "Kategori:";
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblCategory.Location = new System.Drawing.Point(5, 154);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(125, 29);
+            this.lblCategory.TabIndex = 14;
+            this.lblCategory.Text = "Category:";
             // 
             // btnCancel
             // 
@@ -63,7 +64,7 @@
             this.btnCancel.Location = new System.Drawing.Point(395, 221);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(207, 69);
-            this.btnCancel.TabIndex = 13;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -74,48 +75,48 @@
             this.btnAdd.Location = new System.Drawing.Point(148, 221);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(207, 69);
-            this.btnAdd.TabIndex = 12;
+            this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // txtLink
+            // txtUrl
             // 
-            this.txtLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtLink.Location = new System.Drawing.Point(148, 88);
-            this.txtLink.Multiline = true;
-            this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(454, 39);
-            this.txtLink.TabIndex = 11;
+            this.txtUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtUrl.Location = new System.Drawing.Point(148, 88);
+            this.txtUrl.Multiline = true;
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(454, 39);
+            this.txtUrl.TabIndex = 2;
             // 
-            // txtTittle
+            // txtTitle
             // 
-            this.txtTittle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtTittle.Location = new System.Drawing.Point(148, 23);
-            this.txtTittle.Multiline = true;
-            this.txtTittle.Name = "txtTittle";
-            this.txtTittle.Size = new System.Drawing.Size(454, 39);
-            this.txtTittle.TabIndex = 10;
+            this.txtTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtTitle.Location = new System.Drawing.Point(148, 23);
+            this.txtTitle.Multiline = true;
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(454, 39);
+            this.txtTitle.TabIndex = 1;
             // 
-            // lblLink
+            // lblUrl
             // 
-            this.lblLink.AutoSize = true;
-            this.lblLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblLink.Location = new System.Drawing.Point(62, 92);
-            this.lblLink.Name = "lblLink";
-            this.lblLink.Size = new System.Drawing.Size(68, 29);
-            this.lblLink.TabIndex = 9;
-            this.lblLink.Text = "Link:";
+            this.lblUrl.AutoSize = true;
+            this.lblUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblUrl.Location = new System.Drawing.Point(76, 92);
+            this.lblUrl.Name = "lblUrl";
+            this.lblUrl.Size = new System.Drawing.Size(54, 29);
+            this.lblUrl.TabIndex = 9;
+            this.lblUrl.Text = "Url:";
             // 
-            // lblTittle
+            // lblTitle
             // 
-            this.lblTittle.AutoSize = true;
-            this.lblTittle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblTittle.Location = new System.Drawing.Point(50, 23);
-            this.lblTittle.Name = "lblTittle";
-            this.lblTittle.Size = new System.Drawing.Size(80, 29);
-            this.lblTittle.TabIndex = 8;
-            this.lblTittle.Text = "Tittle:";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblTitle.Location = new System.Drawing.Point(57, 23);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(73, 29);
+            this.lblTitle.TabIndex = 8;
+            this.lblTitle.Text = "Title:";
             // 
             // tblLinksForm
             // 
@@ -123,16 +124,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 321);
             this.Controls.Add(this.cmbCategory);
-            this.Controls.Add(this.lblKategori);
+            this.Controls.Add(this.lblCategory);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtLink);
-            this.Controls.Add(this.txtTittle);
-            this.Controls.Add(this.lblLink);
-            this.Controls.Add(this.lblTittle);
+            this.Controls.Add(this.txtUrl);
+            this.Controls.Add(this.txtTitle);
+            this.Controls.Add(this.lblUrl);
+            this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "tblLinksForm";
             this.Text = "tblLinksForm";
             this.Load += new System.EventHandler(this.tblLinksForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblLinksForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,12 +145,12 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cmbCategory;
-        private System.Windows.Forms.Label lblKategori;
+        private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox txtLink;
-        private System.Windows.Forms.TextBox txtTittle;
-        private System.Windows.Forms.Label lblLink;
-        private System.Windows.Forms.Label lblTittle;
+        private System.Windows.Forms.TextBox txtUrl;
+        private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.Label lblUrl;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
