@@ -13,9 +13,7 @@ namespace LinkArchive
     {
         // variables
         SqlHelper sqlHelper = new SqlHelper(Constants.DefConString);
-        tblLinks curTblLinks;
-        
-        
+        tblLinksDto curTblLinksDto;
 
         // constructor
         public frmMain()
@@ -28,27 +26,34 @@ namespace LinkArchive
         // load
         private void frmMain_Load(object sender, EventArgs e)
         {
-            this.curTblLinks = null;
-            gvTablo.BorderStyle = BorderStyle.None;
+            this.Text = $"Welcome to LinkArchive v1.0 ({Environment.MachineName})";
+            this.curTblLinksDto = null;
+            //gvTablo.BorderStyle = BorderStyle.None;
             gvTablo.DefaultCellStyle.SelectionBackColor = Color.Green;
             gvTablo.EditMode = DataGridViewEditMode.EditProgrammatically;
             gvTablo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tblLinksBusiness.GetVeri(gvTablo);
+            gvTablo.AllowUserToAddRows = false;
+            gvTablo.MultiSelect = false;
+            gvTablo.CellClick += GvTablo_CellClick;
+            gvTablo.CellDoubleClick += GvTablo_CellDoubleClick;
+            tblLinksBusiness.GetVeri(gvTablo, null);
+
 
             // category combosunu ayarla
             cmbCategory.Items.Clear();
             cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCategory.Sorted = true;
+            tblLinksBusiness.GetCategory(cmbCategory);
 
-            var sql = "select * from tblCategory ";
-            
-            List<string> list = sqlHelper.GetCategory(sql);
-            
-            foreach (string item in list)
-            { 
-                cmbCategory.Items.Add(item);
-            }
-            cmbCategory.SelectedIndex = 2;
+            //var sql = "select * from tblCategory ";
+
+            //List<string> list = sqlHelper.GetCategory(sql);
+
+            //foreach (string item in list)
+            //{ 
+            //    cmbCategory.Items.Add(item);
+            //}
+            //cmbCategory.SelectedIndex = 2;
 
             //frmCategory c = new frmCategory();
 
@@ -57,13 +62,15 @@ namespace LinkArchive
             //    tblLinksBusiness.GetCategory(cmbCategory);
             //}
 
-
-
-
-
         }
 
-        private void dataGVTablo_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void GvTablo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // todo: will do 
+            // çift tıklandığında ilgili url adresini tarayıcıda aç
+        }
+
+        private void GvTablo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //seçilen satır
             int selectedNdx = gvTablo.SelectedCells[0].RowIndex;
@@ -75,42 +82,47 @@ namespace LinkArchive
 
                 if (oId > 0)
                 {
-                    tblLinks tblLinks = new tblLinks();
-                    tblLinks.Id = oId;
-                    tblLinks.Title = gvTablo.Rows[selectedNdx].Cells["Title"].Value.ToString();
-                    tblLinks.Url = gvTablo.Rows[selectedNdx].Cells["Url"].Value.ToString();
-                    tblLinks.Category = gvTablo.Rows[selectedNdx].Cells["Category"].Value.ToString();
-                    curTblLinks = tblLinks;
+                    tblLinksDto tblLinksDto = new tblLinksDto();
+
+                    tblLinksDto.Id = oId;
+                    tblLinksDto.CategoryId = Convert.ToInt32(gvTablo.Rows[selectedNdx].Cells["CategoryId"].Value);
+                    tblLinksDto.CategoryName = Convert.ToString(gvTablo.Rows[selectedNdx].Cells["CategoryName"].Value);
+                    tblLinksDto.Title = gvTablo.Rows[selectedNdx].Cells["Title"].Value.ToString();
+                    tblLinksDto.Url = gvTablo.Rows[selectedNdx].Cells["Url"].Value.ToString();
+                    tblLinksDto.CreateOwner = gvTablo.Rows[selectedNdx].Cells["CreateOwner"].Value.ToString();
+                    tblLinksDto.CreatedAt = Convert.ToDateTime(gvTablo.Rows[selectedNdx].Cells["CreatedAt"].Value);
+
+                    curTblLinksDto = tblLinksDto;
                 }
             }
-
         }
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             // ekle butonuna basınca form kapanması ve yeniden listelenmesi
-            tblLinksForm f = new tblLinksForm(this.curTblLinks);
+            tblLinksForm f = new tblLinksForm(null);
 
             if (f.ShowDialog() == DialogResult.OK)
             {
-                tblLinksBusiness.GetVeri(gvTablo);
+                tblLinksBusiness.GetVeri(gvTablo, null);
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (this.curTblLinks == null)
+            if (this.curTblLinksDto == null)
             {
                 MessageBox.Show("Please select for edit row");
                 return;
             }
 
             // ekle butonuna basınca form kapanması ve yeniden listelenmesi
-            tblLinksForm f = new tblLinksForm(this.curTblLinks);
+            tblLinksForm f = new tblLinksForm(this.curTblLinksDto);
 
             if (f.ShowDialog() == DialogResult.OK)
             {
-                tblLinksBusiness.GetVeri(gvTablo);
+                tblLinksBusiness.GetVeri(gvTablo, null);
             }
         }
 
@@ -118,23 +130,23 @@ namespace LinkArchive
         {
             try
             {
-                
+
 
                 DialogResult result = MessageBox.Show("Seçili link silinsin mi ?", "Uyarı", MessageBoxButtons.YesNo);
 
                 var sql = "DELETE from tblLinks WHERE Id=@Id";
 
                 List<SqlParameter> parameters = new List<SqlParameter>();
-             
-                parameters.Add(new SqlParameter("@Id", curTblLinks.Id));
+
+                parameters.Add(new SqlParameter("@Id", curTblLinksDto.Id));
 
 
 
                 if (result == DialogResult.Yes)
                 {
                     var res = sqlHelper.ExecuteNoneQuery(sql, parameters);
-                    
-                    tblLinksBusiness.GetVeri(gvTablo);
+
+                    tblLinksBusiness.GetVeri(gvTablo, null);
 
                 }
             }
@@ -148,27 +160,31 @@ namespace LinkArchive
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            tblLinksDto searchDto = new tblLinksDto();
+            searchDto.Title = txtTitle.Text.Trim();
 
-            //if (txtTittle.Text.Trim() != "" || txtLink.Text.Trim() != "" || cBoxCategory.Text != "")
-            //{
-            //    SqlCommand komut = new SqlCommand("select * from tblLinks where Tittle like '%" + txtTittle.Text + "%'", con); // ???
-            //    SqlDataAdapter adapter = new SqlDataAdapter(komut);
-            //    DataSet ds = new DataSet();
-            //    adapter.Fill(ds);
-            //    gvTablo.DataSource = ds.Tables[0];
-            //    con.Close();
-            //}
+            tblLinksBusiness.GetVeri(gvTablo, searchDto);
         }
 
         private void btnCAdd_Click(object sender, EventArgs e)
         {
+            //?? kategori ekleyince yenilemiyor
+
             frmCategory c = new frmCategory();
-            c.ShowDialog();
+
+
+            if (c.ShowDialog() == DialogResult.OK)
+            {
+                tblLinksBusiness.GetCategory(cmbCategory);
+            }
+
+
         }
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
+                // todo: uyarı mesajı ile sor
                 this.Close();
             }
         }

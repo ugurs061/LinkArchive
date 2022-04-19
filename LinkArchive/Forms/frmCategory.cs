@@ -46,9 +46,10 @@ namespace LinkArchive
                 parameters.Add(new SqlParameter("@Category", category));
 
                 var res = sqlHelper.ExecuteNoneQuery(sql, parameters);
-
-                MessageBox.Show("Added");
                 this.DialogResult = DialogResult.OK;
+                MessageBox.Show("Added");
+
+                
             }
         }
 

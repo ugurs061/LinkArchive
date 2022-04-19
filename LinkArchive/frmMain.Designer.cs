@@ -34,7 +34,7 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.txtUrl = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbSearch = new System.Windows.Forms.GroupBox();
             this.btnCAdd = new System.Windows.Forms.Button();
             this.cmbOwner = new System.Windows.Forms.ComboBox();
             this.lblOwner = new System.Windows.Forms.Label();
@@ -44,8 +44,14 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.pnlBottom = new System.Windows.Forms.Panel();
+            this.pnlContent = new System.Windows.Forms.Panel();
+            this.pnlTop = new System.Windows.Forms.Panel();
+            this.gbSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTablo)).BeginInit();
+            this.pnlBottom.SuspendLayout();
+            this.pnlContent.SuspendLayout();
+            this.pnlTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblUrl
@@ -91,7 +97,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(585, 167);
+            this.btnSearch.Location = new System.Drawing.Point(545, 30);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(140, 57);
             this.btnSearch.TabIndex = 5;
@@ -100,24 +106,25 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // groupBox1
+            // gbSearch
             // 
-            this.groupBox1.Controls.Add(this.btnCAdd);
-            this.groupBox1.Controls.Add(this.cmbOwner);
-            this.groupBox1.Controls.Add(this.lblOwner);
-            this.groupBox1.Controls.Add(this.cmbCategory);
-            this.groupBox1.Controls.Add(this.lblCategory);
-            this.groupBox1.Controls.Add(this.lblTitle);
-            this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.lblUrl);
-            this.groupBox1.Controls.Add(this.txtUrl);
-            this.groupBox1.Controls.Add(this.txtTitle);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(765, 258);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Search";
+            this.gbSearch.Controls.Add(this.btnCAdd);
+            this.gbSearch.Controls.Add(this.cmbOwner);
+            this.gbSearch.Controls.Add(this.lblOwner);
+            this.gbSearch.Controls.Add(this.cmbCategory);
+            this.gbSearch.Controls.Add(this.lblCategory);
+            this.gbSearch.Controls.Add(this.lblTitle);
+            this.gbSearch.Controls.Add(this.btnSearch);
+            this.gbSearch.Controls.Add(this.lblUrl);
+            this.gbSearch.Controls.Add(this.txtUrl);
+            this.gbSearch.Controls.Add(this.txtTitle);
+            this.gbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbSearch.Location = new System.Drawing.Point(0, 0);
+            this.gbSearch.Name = "gbSearch";
+            this.gbSearch.Size = new System.Drawing.Size(1210, 260);
+            this.gbSearch.TabIndex = 5;
+            this.gbSearch.TabStop = false;
+            this.gbSearch.Text = "Search";
             // 
             // btnCAdd
             // 
@@ -177,67 +184,95 @@
             // 
             this.gvTablo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvTablo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvTablo.Location = new System.Drawing.Point(12, 297);
+            this.gvTablo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvTablo.Location = new System.Drawing.Point(0, 0);
             this.gvTablo.Name = "gvTablo";
             this.gvTablo.ReadOnly = true;
             this.gvTablo.RowHeadersWidth = 62;
             this.gvTablo.RowTemplate.Height = 28;
-            this.gvTablo.Size = new System.Drawing.Size(766, 303);
+            this.gvTablo.Size = new System.Drawing.Size(1210, 316);
             this.gvTablo.TabIndex = 10;
-            this.gvTablo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVTablo_CellClick);
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(124, 616);
+            this.btnAdd.Location = new System.Drawing.Point(300, 13);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(105, 64);
+            this.btnAdd.Size = new System.Drawing.Size(165, 64);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Add";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
+            this.btnEdit.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(328, 616);
+            this.btnEdit.Location = new System.Drawing.Point(472, 13);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(108, 64);
+            this.btnEdit.Size = new System.Drawing.Size(165, 64);
             this.btnEdit.TabIndex = 8;
             this.btnEdit.Text = "Edit";
-            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
+            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(519, 616);
+            this.btnDelete.Location = new System.Drawing.Point(644, 13);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(135, 64);
+            this.btnDelete.Size = new System.Drawing.Size(165, 64);
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
-            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // pnlBottom
+            // 
+            this.pnlBottom.Controls.Add(this.btnAdd);
+            this.pnlBottom.Controls.Add(this.btnDelete);
+            this.pnlBottom.Controls.Add(this.btnEdit);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 576);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(1210, 89);
+            this.pnlBottom.TabIndex = 11;
+            // 
+            // pnlContent
+            // 
+            this.pnlContent.Controls.Add(this.gvTablo);
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Location = new System.Drawing.Point(0, 260);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(1210, 316);
+            this.pnlContent.TabIndex = 12;
+            // 
+            // pnlTop
+            // 
+            this.pnlTop.Controls.Add(this.gbSearch);
+            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlTop.Name = "pnlTop";
+            this.pnlTop.Size = new System.Drawing.Size(1210, 260);
+            this.pnlTop.TabIndex = 13;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(788, 691);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.gvTablo);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1210, 665);
+            this.Controls.Add(this.pnlContent);
+            this.Controls.Add(this.pnlTop);
+            this.Controls.Add(this.pnlBottom);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "frmMain";
@@ -245,9 +280,12 @@
             this.Text = "Link Archive";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbSearch.ResumeLayout(false);
+            this.gbSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTablo)).EndInit();
+            this.pnlBottom.ResumeLayout(false);
+            this.pnlContent.ResumeLayout(false);
+            this.pnlTop.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -259,7 +297,7 @@
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbSearch;
         private System.Windows.Forms.DataGridView gvTablo;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnEdit;
@@ -269,6 +307,9 @@
         private System.Windows.Forms.ComboBox cmbOwner;
         private System.Windows.Forms.Label lblOwner;
         private System.Windows.Forms.Button btnCAdd;
+        private System.Windows.Forms.Panel pnlBottom;
+        private System.Windows.Forms.Panel pnlContent;
+        private System.Windows.Forms.Panel pnlTop;
     }
 }
 

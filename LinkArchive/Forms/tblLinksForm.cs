@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LinkArchive.Business;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -9,53 +10,50 @@ namespace LinkArchive.Forms
     {
         // variables
         SqlHelper sqlHelper = new SqlHelper(Constants.DefConString);
-        tblLinks curTblLink;
+        tblLinksDto curTblLinkDto;
 
         // constructor
-        public tblLinksForm(tblLinks tblLinks)
+        public tblLinksForm(tblLinksDto tblLinksDto)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.curTblLink = tblLinks;
+            this.curTblLinkDto = tblLinksDto;
         }
 
         // load
         private void tblLinksForm_Load(object sender, EventArgs e)
         {
             // category combosunu ayarla
-            cmbCategory.Items.Clear();
-
+            //cmbCategory.Items.Clear();
             cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            //cmbCategory.Sorted = true;
+            //var sql = "select * from tblCategory ";
+            //List<string> list = sqlHelper.GetCategory(sql);
+            //foreach (string item in list)
+            //{
+            //    cmbCategory.Items.Add(item);
+            //}
+            //cmbCategory.SelectedIndex = 2;
 
-            cmbCategory.Sorted = true;
-
-            var sql = "select * from tblCategory ";
-
-            List<string> list = sqlHelper.GetCategory(sql);
-
-            foreach (string item in list)
-            {
-                cmbCategory.Items.Add(item);
-            }
-            cmbCategory.SelectedIndex = 2;
+            tblLinksBusiness.GetCategory(cmbCategory);
 
             // diğer text görsellerini ayarla
-            if (this.curTblLink == null) // add yapılacak demek
+            if (this.curTblLinkDto == null) // add yapılacak demek
             {
                 this.Text = "Add";
-                btnAdd.Text = "Add";
+                btnAdd.Text = "Save";
             }
             else // edit yapılacak demek
             {
                 this.Text = "Edit";
-                btnAdd.Text = "Edit";
+                btnAdd.Text = "Save";
 
-                txtUrl.Text = this.curTblLink.Url;
-                txtTitle.Text = this.curTblLink.Title;
-                cmbCategory.Text = this.curTblLink.Category;
+                txtUrl.Text = this.curTblLinkDto.Url;
+                txtTitle.Text = this.curTblLinkDto.Title;
+                cmbCategory.Text = this.curTblLinkDto.CategoryName;
             }
         }
 
@@ -81,7 +79,7 @@ namespace LinkArchive.Forms
                 return;
             }
 
-            if (this.curTblLink == null)
+            if (this.curTblLinkDto == null)
             {
                 var sql = "insert into tblLinks (Title, Url, Category) values (@Title, @Url, @Category)";
 
@@ -108,7 +106,7 @@ namespace LinkArchive.Forms
                 var sql = "update tblLinks set Title = @Title, Url = @Url, Category = @Category where Id = @Id";
 
                 List<SqlParameter> parameters = new List<SqlParameter>();
-                parameters.Add(new SqlParameter("@Id", this.curTblLink.Id));
+                parameters.Add(new SqlParameter("@Id", this.curTblLinkDto.Id));
                 parameters.Add(new SqlParameter("@Title", title));
                 parameters.Add(new SqlParameter("@Url", link));
                 parameters.Add(new SqlParameter("@Category", category));
@@ -119,8 +117,8 @@ namespace LinkArchive.Forms
                 {
                     // kayıt başarılı
                     this.DialogResult = DialogResult.OK;
-                    
-                    
+
+
                 }
                 else
                 {

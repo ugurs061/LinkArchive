@@ -31,14 +31,23 @@ namespace LinkArchive
             con.Close();
         }
 
+
         // GetTable - verileri getirtmek için metod tanımlıyoruz.
-        public (bool, DataTable, string) GetTable(string query)
+        public (bool, DataTable, string) GetTable(string query, List<SqlParameter> parameters = null)
         {
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conString);
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                if (parameters != null)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddRange(parameters.ToArray());
+                }
+
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                adp.Fill(dt);
 
                 return (true, dt, string.Empty);
             }
@@ -47,7 +56,6 @@ namespace LinkArchive
                 return (false, null, ex.Message);
             }
         }
-
         // ExecuteNoneQuery - parametreli sql komutu çalıştırır
         public (bool, string) ExecuteNoneQuery(string sql, List<SqlParameter> parameters = null)
         {
@@ -70,23 +78,24 @@ namespace LinkArchive
             }
 
         }
-        public List <string> GetCategory(string sql)
-        {
-            if (con.State == ConnectionState.Closed) con.Open();
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.CommandType = CommandType.Text;
 
-            SqlDataReader dr;
-            dr = cmd.ExecuteReader();
-            List<string> category=new List<string>();
-            while (dr.Read())
-            {
-                category.Add(dr["Category"].ToString());
-            }
-            
-            con.Close();
-            return category;
-        }
+        //public List <string> GetCategory(string sql)
+        //{
+        //    if (con.State == ConnectionState.Closed) con.Open();
+        //    SqlCommand cmd = new SqlCommand(sql, con);
+        //    cmd.CommandType = CommandType.Text;
+
+        //    SqlDataReader dr;
+        //    dr = cmd.ExecuteReader();
+        //    List<string> category=new List<string>();
+        //    while (dr.Read())
+        //    {
+        //        category.Add(dr["Category"].ToString());
+        //    }
+
+        //    con.Close();
+        //    return category;
+        //}
 
 
     }
