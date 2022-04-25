@@ -45,6 +45,8 @@ namespace LinkArchive
             cmbCategory.Sorted = true;
             tblLinksBusiness.GetCategory(cmbCategory);
 
+            
+
             //var sql = "select * from tblCategory ";
 
             //List<string> list = sqlHelper.GetCategory(sql);
@@ -162,6 +164,10 @@ namespace LinkArchive
         {
             tblLinksDto searchDto = new tblLinksDto();
             searchDto.Title = txtTitle.Text.Trim();
+
+            searchDto.Url = txtUrl.Text.Trim();
+
+            
 
             tblLinksBusiness.GetVeri(gvTablo, searchDto);
         }

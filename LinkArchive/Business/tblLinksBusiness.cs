@@ -33,6 +33,15 @@ namespace LinkArchive.Business
 
                 }
 
+                else if (!string.IsNullOrEmpty(searchDto.Url))
+                {
+                    sb.AppendLine("t1.Url like @p2 and ");
+                    parameters.Add(new SqlParameter("@p2", $"%{searchDto.Url}%"));
+
+                }
+
+
+
                 sb.AppendLine("t1.IsDeleted = 0 order by t1.Id desc");
 
                 gv.DataSource = sqlHelper.GetTable(sb.ToString(),parameters).Item2;
@@ -48,6 +57,12 @@ namespace LinkArchive.Business
             cmb.DataSource = sqlHelper.GetTable("select Id, CategoryName from tblCategory order by CategoryName").Item2;
             cmb.DisplayMember = "CategoryName";
             cmb.ValueMember = "Id";
+        }
+        public static void GetOwner(ComboBox cmb)
+        {
+            var sqlHelper = new SqlHelper(Constants.DefConString);
+            cmb.DataSource = sqlHelper.GetTable("select distinct CreateOwner from tblLinks order by CreateOwner");
+
         }
 
     }
