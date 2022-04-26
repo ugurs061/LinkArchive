@@ -19,8 +19,7 @@ namespace LinkArchive
         public frmMain()
         {
             InitializeComponent();
-
-
+            this.DoubleBuffered = true;// Titreşimi azaltmak için kullanılır
         }
 
         // load
@@ -28,6 +27,10 @@ namespace LinkArchive
         {
             this.Text = $"Welcome to LinkArchive v1.0 ({Environment.MachineName})";
             this.curTblLinksDto = null;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.MinimumSize = new Size(1200, 600);
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             //gvTablo.BorderStyle = BorderStyle.None;
             gvTablo.DefaultCellStyle.SelectionBackColor = Color.Green;
             gvTablo.EditMode = DataGridViewEditMode.EditProgrammatically;
@@ -43,26 +46,14 @@ namespace LinkArchive
             cmbCategory.Items.Clear();
             cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCategory.Sorted = true;
-            tblLinksBusiness.GetCategory(cmbCategory);
+            tblLinksBusiness.GetCategory(cmbCategory, true);
 
-            
-
-            //var sql = "select * from tblCategory ";
-
-            //List<string> list = sqlHelper.GetCategory(sql);
-
-            //foreach (string item in list)
-            //{ 
-            //    cmbCategory.Items.Add(item);
-            //}
-            //cmbCategory.SelectedIndex = 2;
-
-            //frmCategory c = new frmCategory();
-
-            //if (c.ShowDialog() == DialogResult.OK)
-            //{
-            //    tblLinksBusiness.GetCategory(cmbCategory);
-            //}
+            cmbOwner.DropDownStyle = ComboBoxStyle.DropDownList;
+            tblLinksBusiness.GetOwner(cmbOwner);
+           
+            // combodan birşey seçildiğinde btnSearch'e click yap
+            cmbCategory.SelectedIndexChanged += (ss, ee) => { btnSearch.PerformClick(); };
+            cmbOwner.SelectedIndexChanged += (ss, ee) => { btnSearch.PerformClick(); };
 
         }
 
@@ -73,6 +64,11 @@ namespace LinkArchive
         }
 
         private void GvTablo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SetSelectedRow();
+        }
+
+        private void SetSelectedRow()
         {
             //seçilen satır
             int selectedNdx = gvTablo.SelectedCells[0].RowIndex;
@@ -99,7 +95,6 @@ namespace LinkArchive
             }
         }
 
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             // ekle butonuna basınca form kapanması ve yeniden listelenmesi
@@ -113,8 +108,10 @@ namespace LinkArchive
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            SetSelectedRow();
+
             if (this.curTblLinksDto == null)
-            {
+            {     
                 MessageBox.Show("Please select for edit row");
                 return;
             }
@@ -163,25 +160,24 @@ namespace LinkArchive
         private void btnSearch_Click(object sender, EventArgs e)
         {
             tblLinksDto searchDto = new tblLinksDto();
+
             searchDto.Title = txtTitle.Text.Trim();
-
             searchDto.Url = txtUrl.Text.Trim();
-
-            
+            searchDto.CategoryName = cmbCategory.Text;
+            searchDto.CreateOwner = cmbOwner.Text;
 
             tblLinksBusiness.GetVeri(gvTablo, searchDto);
         }
 
         private void btnCAdd_Click(object sender, EventArgs e)
         {
-            //?? kategori ekleyince yenilemiyor
 
             frmCategory c = new frmCategory();
 
 
             if (c.ShowDialog() == DialogResult.OK)
             {
-                tblLinksBusiness.GetCategory(cmbCategory);
+                tblLinksBusiness.GetCategory(cmbCategory, false);
             }
 
 

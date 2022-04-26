@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -33,35 +34,77 @@ namespace LinkArchive.Business
 
                 }
 
-                else if (!string.IsNullOrEmpty(searchDto.Url))
+                if (!string.IsNullOrEmpty(searchDto.Url))
                 {
                     sb.AppendLine("t1.Url like @p2 and ");
                     parameters.Add(new SqlParameter("@p2", $"%{searchDto.Url}%"));
 
                 }
 
+                if (!string.IsNullOrEmpty(searchDto.CategoryName))
+                {
+
+                    if (searchDto.CategoryName != "-All-")
+                    {
+                        sb.AppendLine("t2.CategoryName like @p3 and ");
+                        parameters.Add(new SqlParameter("@p3", $"%{searchDto.CategoryName}%"));
+                    }
+
+                }
+
+                if (!string.IsNullOrEmpty(searchDto.CreateOwner))
+                {
+                    if (searchDto.CreateOwner != "-All-")
+                    {
+                        sb.AppendLine("t1.CreateOwner like @p4 and ");
+                        parameters.Add(new SqlParameter("@p4", $"%{searchDto.CreateOwner}%"));
+                    }
+
+                }
 
 
                 sb.AppendLine("t1.IsDeleted = 0 order by t1.Id desc");
 
-                gv.DataSource = sqlHelper.GetTable(sb.ToString(),parameters).Item2;
+                gv.DataSource = sqlHelper.GetTable(sb.ToString(), parameters).Item2;
             }
 
             gv.Columns["CategoryId"].Visible = false;
         }
 
         // GetCategory - Category Id ve Name listesini döndürür
-        public static void GetCategory(ComboBox cmb)
+        public static void GetCategory(ComboBox cmb, bool addAll)// bool değer döndürmeli. Çünkü -All- yazısı add ve edit formundaki kategoride gözükmemeli.
         {
             var sqlHelper = new SqlHelper(Constants.DefConString);
-            cmb.DataSource = sqlHelper.GetTable("select Id, CategoryName from tblCategory order by CategoryName").Item2;
+            var dataTable = sqlHelper.GetTable("select Id, CategoryName from tblCategory order by CategoryName").Item2;
+            // Soyut satır ekledik
+            if (addAll)
+            {
+                dataTable.Rows.Add(new object[] { 0, "-All-" });
+            }
+
+            cmb.DataSource = dataTable;
             cmb.DisplayMember = "CategoryName";
             cmb.ValueMember = "Id";
         }
         public static void GetOwner(ComboBox cmb)
         {
             var sqlHelper = new SqlHelper(Constants.DefConString);
-            cmb.DataSource = sqlHelper.GetTable("select distinct CreateOwner from tblLinks order by CreateOwner");
+
+            var dataTable = sqlHelper.GetTable("select distinct CreateOwner from tblLinks order by CreateOwner").Item2;
+
+            // cmbyi kendimiz ayarladık
+            cmb.BeginUpdate();
+            cmb.Items.Clear();
+            cmb.Items.Add("-All-");
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                cmb.Items.Add(row["CreateOwner"]);
+            }
+
+            cmb.EndUpdate();
+            cmb.SelectedIndex = 0;
+
 
         }
 

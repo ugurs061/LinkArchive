@@ -121,7 +121,7 @@
             this.gbSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbSearch.Location = new System.Drawing.Point(0, 0);
             this.gbSearch.Name = "gbSearch";
-            this.gbSearch.Size = new System.Drawing.Size(1210, 260);
+            this.gbSearch.Size = new System.Drawing.Size(1261, 260);
             this.gbSearch.TabIndex = 5;
             this.gbSearch.TabStop = false;
             this.gbSearch.Text = "Search";
@@ -190,7 +190,7 @@
             this.gvTablo.ReadOnly = true;
             this.gvTablo.RowHeadersWidth = 62;
             this.gvTablo.RowTemplate.Height = 28;
-            this.gvTablo.Size = new System.Drawing.Size(1210, 316);
+            this.gvTablo.Size = new System.Drawing.Size(1261, 415);
             this.gvTablo.TabIndex = 10;
             // 
             // btnAdd
@@ -199,7 +199,7 @@
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(351, 13);
+            this.btnAdd.Location = new System.Drawing.Point(333, 13);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(165, 64);
             this.btnAdd.TabIndex = 7;
@@ -213,7 +213,7 @@
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(523, 13);
+            this.btnEdit.Location = new System.Drawing.Point(505, 13);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(165, 64);
             this.btnEdit.TabIndex = 8;
@@ -227,7 +227,7 @@
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(695, 13);
+            this.btnDelete.Location = new System.Drawing.Point(677, 13);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(165, 64);
             this.btnDelete.TabIndex = 9;
@@ -241,9 +241,9 @@
             this.pnlBottom.Controls.Add(this.btnDelete);
             this.pnlBottom.Controls.Add(this.btnEdit);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 576);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 675);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1210, 89);
+            this.pnlBottom.Size = new System.Drawing.Size(1261, 89);
             this.pnlBottom.TabIndex = 11;
             // 
             // pnlContent
@@ -252,7 +252,7 @@
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 260);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1210, 316);
+            this.pnlContent.Size = new System.Drawing.Size(1261, 415);
             this.pnlContent.TabIndex = 12;
             // 
             // pnlTop
@@ -261,20 +261,21 @@
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(1210, 260);
+            this.pnlTop.Size = new System.Drawing.Size(1261, 260);
             this.pnlTop.TabIndex = 13;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1210, 665);
+            this.ClientSize = new System.Drawing.Size(1261, 764);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.pnlBottom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(1230, 600);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Link Archive";

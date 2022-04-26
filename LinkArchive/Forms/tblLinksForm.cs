@@ -38,7 +38,7 @@ namespace LinkArchive.Forms
             //}
             //cmbCategory.SelectedIndex = 2;
 
-            tblLinksBusiness.GetCategory(cmbCategory);
+            tblLinksBusiness.GetCategory(cmbCategory, false);
 
             // diğer text görsellerini ayarla
             if (this.curTblLinkDto == null) // add yapılacak demek
