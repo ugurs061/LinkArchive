@@ -25,11 +25,11 @@ namespace LinkArchive
         // load
         private void frmMain_Load(object sender, EventArgs e)
         {
-            this.Text = $"Welcome to LinkArchive v1.0 ({Environment.MachineName})";
+            this.Text = $"Welcome to LinkArchive v1.0 ({Environment.UserName})";
             this.curTblLinksDto = null;
             this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.MinimumSize = new Size(1200, 600);
-            this.StartPosition = FormStartPosition.CenterScreen;
+            this.MinimumSize = new Size(800, 500);
+            //this.StartPosition = FormStartPosition.CenterScreen;
 
             //gvTablo.BorderStyle = BorderStyle.None;
             gvTablo.DefaultCellStyle.SelectionBackColor = Color.Green;
@@ -50,17 +50,18 @@ namespace LinkArchive
 
             cmbOwner.DropDownStyle = ComboBoxStyle.DropDownList;
             tblLinksBusiness.GetOwner(cmbOwner);
-           
+
             // combodan birşey seçildiğinde btnSearch'e click yap
             cmbCategory.SelectedIndexChanged += (ss, ee) => { btnSearch.PerformClick(); };
             cmbOwner.SelectedIndexChanged += (ss, ee) => { btnSearch.PerformClick(); };
-
         }
 
         private void GvTablo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // todo: will do 
             // çift tıklandığında ilgili url adresini tarayıcıda aç
+
+            System.Diagnostics.Process.Start(curTblLinksDto.Url);
+
         }
 
         private void GvTablo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -97,7 +98,7 @@ namespace LinkArchive
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // ekle butonuna basınca form kapanması ve yeniden listelenmesi
+            // add butonuna basınca form kapanması ve yeniden listelenmesi
             tblLinksForm f = new tblLinksForm(null);
 
             if (f.ShowDialog() == DialogResult.OK)
@@ -111,12 +112,12 @@ namespace LinkArchive
             SetSelectedRow();
 
             if (this.curTblLinksDto == null)
-            {     
+            {
                 MessageBox.Show("Please select for edit row");
                 return;
             }
 
-            // ekle butonuna basınca form kapanması ve yeniden listelenmesi
+            // edit butonuna basınca form kapanması ve yeniden listelenmesi
             tblLinksForm f = new tblLinksForm(this.curTblLinksDto);
 
             if (f.ShowDialog() == DialogResult.OK)
@@ -129,21 +130,16 @@ namespace LinkArchive
         {
             try
             {
-
+                // todo: delete işlemini yap
 
                 DialogResult result = MessageBox.Show("Seçili link silinsin mi ?", "Uyarı", MessageBoxButtons.YesNo);
 
-                var sql = "DELETE from tblLinks WHERE Id=@Id";
-
-                List<SqlParameter> parameters = new List<SqlParameter>();
-
-                parameters.Add(new SqlParameter("@Id", curTblLinksDto.Id));
 
 
 
                 if (result == DialogResult.Yes)
                 {
-                    var res = sqlHelper.ExecuteNoneQuery(sql, parameters);
+
 
                     tblLinksBusiness.GetVeri(gvTablo, null);
 
@@ -186,8 +182,10 @@ namespace LinkArchive
         {
             if (e.KeyCode == Keys.Escape)
             {
-                // todo: uyarı mesajı ile sor
-                this.Close();
+                if (MessageBox.Show("Çıkmak istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
             }
         }
     }

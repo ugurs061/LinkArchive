@@ -81,7 +81,7 @@ namespace LinkArchive.Business
             {
                 dataTable.Rows.Add(new object[] { 0, "-All-" });
             }
-
+            // isimleri basmak için 1.yol
             cmb.DataSource = dataTable;
             cmb.DisplayMember = "CategoryName";
             cmb.ValueMember = "Id";
@@ -92,6 +92,7 @@ namespace LinkArchive.Business
 
             var dataTable = sqlHelper.GetTable("select distinct CreateOwner from tblLinks order by CreateOwner").Item2;
 
+            // isimleri basmak için 2.yol
             // cmbyi kendimiz ayarladık
             cmb.BeginUpdate();
             cmb.Items.Clear();
@@ -104,8 +105,20 @@ namespace LinkArchive.Business
 
             cmb.EndUpdate();
             cmb.SelectedIndex = 0;
+        }
+        public static void DeleteVeri(tblLinksDto deleteDto)
+        {
+            // todo: delete
 
+            var sqlHelper = new SqlHelper(Constants.DefConString);
 
+            var sql = "DELETE from tblLinks WHERE Id=@Id and 0=0";
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            parameters.Add(new SqlParameter("@Id",deleteDto.Id ));
+
+            var res = sqlHelper.ExecuteNoneQuery(sql, parameters);
         }
 
     }

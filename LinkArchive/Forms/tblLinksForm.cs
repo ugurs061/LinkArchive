@@ -40,7 +40,6 @@ namespace LinkArchive.Forms
 
             tblLinksBusiness.GetCategory(cmbCategory, false);
 
-            // diğer text görsellerini ayarla
             if (this.curTblLinkDto == null) // add yapılacak demek
             {
                 this.Text = "Add";
@@ -103,6 +102,7 @@ namespace LinkArchive.Forms
             }
             else
             {
+                // todo: güncelleme de hata var 
                 var sql = "update tblLinks set Title = @Title, Url = @Url, Category = @Category where Id = @Id";
 
                 List<SqlParameter> parameters = new List<SqlParameter>();
@@ -138,6 +138,7 @@ namespace LinkArchive.Forms
             {
                 this.Close();
             }
+
         }
     }
 }
