@@ -61,7 +61,6 @@ namespace LinkArchive.Forms
             // verileri ekrandan topla (grab)
             var title = txtTitle.Text.Trim();
             var link = txtUrl.Text.Trim();
-            var category = cmbCategory.Text.Trim();
 
             // validations
             if (string.IsNullOrEmpty(title))
@@ -80,12 +79,24 @@ namespace LinkArchive.Forms
 
             if (this.curTblLinkDto == null)
             {
-                var sql = "insert into tblLinks (Title, Url, Category) values (@Title, @Url, @Category)";
+                var userName = Environment.UserName;
+                var categoryId = int.Parse(cmbCategory.SelectedValue.ToString());
+
+                var sql = "insert into tblLinks (CategoryId, Title, Url, CreateOwner, CreatedAt, IsDeleted) values (@CategoryId, @Title, @Url, @CreateOwner, @CreatedAt, @IsDeleted)";
 
                 List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter("@CategoryId", categoryId));
                 parameters.Add(new SqlParameter("@Title", title));
                 parameters.Add(new SqlParameter("@Url", link));
-                parameters.Add(new SqlParameter("@Category", category));
+                parameters.Add(new SqlParameter("@CreateOwner", userName));
+
+                var pCreatedAt = new SqlParameter("@CreatedAt", System.Data.SqlDbType.DateTime);
+                pCreatedAt.Value = DateTime.Now;
+                parameters.Add(pCreatedAt);
+
+                var pIsDeleted = new SqlParameter("@IsDeleted", System.Data.SqlDbType.Int);
+                pIsDeleted.Value = 0;
+                parameters.Add(pIsDeleted);
 
                 var res = sqlHelper.ExecuteNoneQuery(sql, parameters);
 
@@ -97,19 +108,23 @@ namespace LinkArchive.Forms
                 else
                 {
                     // kayıt başarısız. Sonuç, Item2 stringinde.
+                    MessageBox.Show(res.Item2);
                 }
 
             }
             else
             {
-                // todo: güncelleme de hata var 
-                var sql = "update tblLinks set Title = @Title, Url = @Url, Category = @Category where Id = @Id";
+                // todo: Güncelleme de hata var 
+
+                var categoryId = int.Parse(cmbCategory.SelectedValue.ToString());
+
+                var sql = "update tblLinks set CategoryId=@CategoryId, Title = @Title, Url = @Url where Id = @Id";
 
                 List<SqlParameter> parameters = new List<SqlParameter>();
                 parameters.Add(new SqlParameter("@Id", this.curTblLinkDto.Id));
                 parameters.Add(new SqlParameter("@Title", title));
                 parameters.Add(new SqlParameter("@Url", link));
-                parameters.Add(new SqlParameter("@Category", category));
+                parameters.Add(new SqlParameter("@CategoryId", categoryId));
 
                 var res = sqlHelper.ExecuteNoneQuery(sql, parameters);
 
@@ -117,12 +132,11 @@ namespace LinkArchive.Forms
                 {
                     // kayıt başarılı
                     this.DialogResult = DialogResult.OK;
-
-
                 }
                 else
                 {
                     // kayıt başarısız. Sonuç, Item2 stringinde.
+                    MessageBox.Show(res.Item2);
                 }
             }
         }

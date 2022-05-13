@@ -47,11 +47,17 @@
             this.pnlBottom = new System.Windows.Forms.Panel();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTablo)).BeginInit();
             this.pnlBottom.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.pnlTop.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblUrl
@@ -190,7 +196,7 @@
             this.gvTablo.ReadOnly = true;
             this.gvTablo.RowHeadersWidth = 62;
             this.gvTablo.RowTemplate.Height = 28;
-            this.gvTablo.Size = new System.Drawing.Size(1261, 415);
+            this.gvTablo.Size = new System.Drawing.Size(1261, 382);
             this.gvTablo.TabIndex = 10;
             // 
             // btnAdd
@@ -250,19 +256,61 @@
             // 
             this.pnlContent.Controls.Add(this.gvTablo);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 260);
+            this.pnlContent.Location = new System.Drawing.Point(0, 293);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1261, 415);
+            this.pnlContent.Size = new System.Drawing.Size(1261, 382);
             this.pnlContent.TabIndex = 12;
             // 
             // pnlTop
             // 
             this.pnlTop.Controls.Add(this.gbSearch);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlTop.Location = new System.Drawing.Point(0, 33);
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(1261, 260);
             this.pnlTop.TabIndex = 13;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.otherToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1261, 33);
+            this.menuStrip1.TabIndex = 14;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // otherToolStripMenuItem
+            // 
+            this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
+            this.otherToolStripMenuItem.Size = new System.Drawing.Size(73, 29);
+            this.otherToolStripMenuItem.Text = "Other";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // frmMain
             // 
@@ -272,9 +320,11 @@
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.pnlBottom);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Link Archive";
@@ -286,7 +336,10 @@
             this.pnlBottom.ResumeLayout(false);
             this.pnlContent.ResumeLayout(false);
             this.pnlTop.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -310,6 +363,11 @@
         private System.Windows.Forms.Panel pnlBottom;
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Panel pnlTop;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }
 

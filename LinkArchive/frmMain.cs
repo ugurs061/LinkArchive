@@ -109,6 +109,8 @@ namespace LinkArchive
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            // todo: Herkes kendi kaydını düzenleyebilmeli
+
             SetSelectedRow();
 
             if (this.curTblLinksDto == null)
@@ -130,15 +132,20 @@ namespace LinkArchive
         {
             try
             {
-                // todo: delete işlemini yap
+                // todo: Delete işlemini yap
+
+                // todo: Herkes kendi kaydını silmeli
+                SetSelectedRow();
 
                 DialogResult result = MessageBox.Show("Seçili link silinsin mi ?", "Uyarı", MessageBoxButtons.YesNo);
 
-
-
-
-                if (result == DialogResult.Yes)
+                if (result == DialogResult.Yes && this.curTblLinksDto == null)
                 {
+                    var sql = "delete from tblLinks where Id=@Id ";
+                    List<SqlParameter> parameters = new List<SqlParameter>();
+                    parameters.Add(new SqlParameter("@Id", curTblLinksDto.Id));
+                    var res = sqlHelper.ExecuteNoneQuery(sql, parameters);
+                    MessageBox.Show("Deleted");
 
 
                     tblLinksBusiness.GetVeri(gvTablo, null);
@@ -187,6 +194,11 @@ namespace LinkArchive
                     Application.Exit();
                 }
             }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

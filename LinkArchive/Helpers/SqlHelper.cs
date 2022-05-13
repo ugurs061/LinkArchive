@@ -66,7 +66,7 @@ namespace LinkArchive
 
                 if (parameters != null)
                 {
-                    cmd.Parameters.AddRange(parameters.ToArray());
+                    cmd.Parameters.AddRange(parameters.ToArray());                  
                 }
                 cmd.ExecuteNonQuery();
                 con.Close();

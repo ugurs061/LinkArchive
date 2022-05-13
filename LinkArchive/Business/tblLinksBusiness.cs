@@ -108,7 +108,7 @@ namespace LinkArchive.Business
         }
         public static void DeleteVeri(tblLinksDto deleteDto)
         {
-            // todo: delete
+            // todo: Delete
 
             var sqlHelper = new SqlHelper(Constants.DefConString);
 
