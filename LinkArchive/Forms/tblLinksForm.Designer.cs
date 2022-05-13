@@ -54,9 +54,9 @@
             this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblCategory.Location = new System.Drawing.Point(5, 154);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(125, 29);
+            this.lblCategory.Size = new System.Drawing.Size(129, 29);
             this.lblCategory.TabIndex = 14;
-            this.lblCategory.Text = "Category:";
+            this.lblCategory.Text = "Category*";
             // 
             // btnCancel
             // 
@@ -83,7 +83,7 @@
             // txtUrl
             // 
             this.txtUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtUrl.Location = new System.Drawing.Point(148, 88);
+            this.txtUrl.Location = new System.Drawing.Point(148, 28);
             this.txtUrl.Multiline = true;
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(454, 39);
@@ -92,7 +92,7 @@
             // txtTitle
             // 
             this.txtTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtTitle.Location = new System.Drawing.Point(148, 23);
+            this.txtTitle.Location = new System.Drawing.Point(148, 90);
             this.txtTitle.Multiline = true;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(454, 39);
@@ -102,21 +102,21 @@
             // 
             this.lblUrl.AutoSize = true;
             this.lblUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblUrl.Location = new System.Drawing.Point(76, 92);
+            this.lblUrl.Location = new System.Drawing.Point(76, 32);
             this.lblUrl.Name = "lblUrl";
-            this.lblUrl.Size = new System.Drawing.Size(54, 29);
+            this.lblUrl.Size = new System.Drawing.Size(58, 29);
             this.lblUrl.TabIndex = 9;
-            this.lblUrl.Text = "Url:";
+            this.lblUrl.Text = "Url*";
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblTitle.Location = new System.Drawing.Point(57, 23);
+            this.lblTitle.Location = new System.Drawing.Point(57, 90);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(73, 29);
+            this.lblTitle.Size = new System.Drawing.Size(77, 29);
             this.lblTitle.TabIndex = 8;
-            this.lblTitle.Text = "Title:";
+            this.lblTitle.Text = "Title*";
             // 
             // tblLinksForm
             // 

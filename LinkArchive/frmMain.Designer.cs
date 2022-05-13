@@ -49,8 +49,8 @@
             this.pnlTop = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTablo)).BeginInit();
@@ -291,6 +291,13 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 34);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // otherToolStripMenuItem
             // 
             this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -299,17 +306,10 @@
             this.otherToolStripMenuItem.Size = new System.Drawing.Size(73, 29);
             this.otherToolStripMenuItem.Text = "Other";
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(178, 34);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // frmMain

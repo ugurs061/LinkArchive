@@ -80,7 +80,7 @@ namespace LinkArchive.Forms
             if (this.curTblLinkDto == null)
             {
                 var userName = Environment.UserName;
-                var categoryId = int.Parse(cmbCategory.SelectedValue.ToString());
+                var categoryId = int.Parse(cmbCategory.SelectedValue.ToString()); // category ıd tutmak için 
 
                 var sql = "insert into tblLinks (CategoryId, Title, Url, CreateOwner, CreatedAt, IsDeleted) values (@CategoryId, @Title, @Url, @CreateOwner, @CreatedAt, @IsDeleted)";
 
@@ -90,6 +90,7 @@ namespace LinkArchive.Forms
                 parameters.Add(new SqlParameter("@Url", link));
                 parameters.Add(new SqlParameter("@CreateOwner", userName));
 
+                // parametre verirken parametre tipini belirtmemiz gerekiyor.
                 var pCreatedAt = new SqlParameter("@CreatedAt", System.Data.SqlDbType.DateTime);
                 pCreatedAt.Value = DateTime.Now;
                 parameters.Add(pCreatedAt);
@@ -154,5 +155,7 @@ namespace LinkArchive.Forms
             }
 
         }
+
+
     }
 }
